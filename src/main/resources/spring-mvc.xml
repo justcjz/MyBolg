@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:mvc="http://www.springframework.org/schema/mvc"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+		http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.0.xsd">
+
+	<!-- 1.开启SpringMVC的注解 -->
+	<mvc:annotation-driven/>
+	
+	<!-- 2.配置视图解析器，添加前缀后缀 -->
+	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+	<property name="viewClass" 	value="org.springframework.web.servlet.view.JstlView"/>
+	<property name="prefix" value="/WEB-INF/jsp/" />
+	 <property name="suffix" value=".jsp" />     
+	</bean>
+	
+	<!-- 3.处理静态文件 -->
+	<!-- 3.1.1 文件直接放在WebContent目录下 -->
+	<!-- 
+	<mvc:resources location="/css/" mapping="/css/**"/>
+	<mvc:resources location="/js/" mapping="/js/**"/>
+	<mvc:resources location="/image/" mapping="/image/**"/>
+	 -->
+	<!-- 3.1.2 文件直接放在WEB-INF目录下 -->
+	<!-- 
+	<mvc:resources location="/WEB-INF/css/" mapping="/css/**"/>
+	 -->
+	<!-- 3.2 使用默认的Servlet去处理静态文件 -->
+	<mvc:default-servlet-handler/>
+	
+	<!-- 4.扫描所有Controller类 -->
+	<context:component-scan base-package="controller"/>
+	
+	<!-- 5.配置上传文件的解析类 -->
+	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+        <property name="maxUploadSize" value="104857600"/>
+        <property name="maxInMemorySize" value="4096"/>
+    </bean>
+</beans>
