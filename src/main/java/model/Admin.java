@@ -80,4 +80,12 @@ public class Admin {
     public void setPhone(String phone) {
         this.phone = phone == null ? null : phone.trim();
     }
+
+	@Override
+	public String toString() {
+		return "Admin [amId=" + amId + ", name=" + name + ", tag=" + tag
+				+ ", img=" + img + ", address=" + address + ", email=" + email
+				+ ", pass=" + pass + ", phone=" + phone + "]";
+	}
+    
 }

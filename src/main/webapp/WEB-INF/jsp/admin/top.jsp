@@ -33,7 +33,7 @@
 							<a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> ADMIN <span class="caret"></span></a>
 							<ul class="dropdown-menu" role="menu">
 								<li>
-									<a href="#"><span class="glyphicon glyphicon-log-out"></span>退出系统</a>
+									<a href="<%=path%>/admin/logout>"><span class="glyphicon glyphicon-log-out"></span>退出系统</a>
 								</li>
 							</ul>
 						</li>

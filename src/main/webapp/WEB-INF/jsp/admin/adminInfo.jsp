@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%
 	String path = request.getContextPath();
 	String staticPath = path + "/static";
@@ -11,7 +12,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Tables</title>
 
-<link href="<%=staticPath%>/css/bootstrap/bootstrap.min.css" rel="stylesheet">
+<link href="<%=staticPath%>/css/bootstrap/bootstrap.min.css"
+	rel="stylesheet">
 <link rel="stylesheet" href="<%=staticPath%>/css/adminStyles.css" />
 
 </head>
@@ -42,27 +44,46 @@
 					<div class="panel-heading">修改信息</div>
 					<div class="panel-body">
 						<div class="col-md-6 col-md-offset-2">
-							<form action="#" role="form" method="post">
-								<div class="form-group">
-									<label>ID</label> <input class="form-control" placeholder="ID"
-										type="text" readonly="readonly">
+							<form action="<%=path%>/admin/updateAdmin" role="form" method="post" enctype="multipart/form-data">
+								<input type="hidden" name="amId" value="${sessionScope.admin.amId}" />    
+								<input type="hidden" name="img" value="${sessionScope.admin.img}" />                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     
+                                <div class="form-group">
+									<div class="row">
+									<img alt="" src="<%=path%>${sessionScope.admin.img}" class="img-circle col-md-3 col-md-offset-5">
+									</div>
+									<label>头像</label> <input type="file" name="imgFile" class="form-control" >
 								</div>
 								<div class="form-group">
-									<label>名称</label> <input type="text" class="form-control">
+									<label>名称</label> <input type="text" class="form-control" name="name"
+										value="${sessionScope.admin.name}">
 								</div>
 								<div class="form-group">
-									<label>标签</label> <input type="text" class="form-control">
+								<label>标签</label><br/>
+								<c:forTokens items="${sessionScope.admin.tag}" delims=","
+									var="t">
+									<label class="checkbox-inline"> <input type="checkbox"
+										name="tag" value="${t}" checked="checked"> ${t}
+									</label>
+									</c:forTokens>
+								</div>
+								
+								<div class="form-group">
+									<label>地址</label> <input type="text" name="address" class="form-control"
+										value="${sessionScope.admin.address}">
 								</div>
 								<div class="form-group">
-									<label>头像</label> <input type="file" class="form-control">
+									<label>邮箱</label> <input type="text" name="email" class="form-control"
+										value="${sessionScope.admin.email}">
 								</div>
 								<div class="form-group">
-									<label>地址</label> <input type="text" class="form-control">
+									<label>密码</label> <input type="password" name="pass" class="form-control"
+										value="${sessionScope.admin.pass}">
 								</div>
 								<div class="form-group">
-									<label>联系方式</label> <input type="text" class="form-control">
+									<label>联系方式</label> <input type="text" name="phone" class="form-control"
+										value="${sessionScope.admin.phone}">
 								</div>
-								<button type="submit" class="btn btn-primary">提交修改</button>
+								<button type="submit" class="btn btn-primary">修改信息</button>
 							</form>
 						</div>
 					</div>
